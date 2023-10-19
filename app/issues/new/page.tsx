@@ -36,14 +36,14 @@ const NewIssuePage = () => {
         className="space-y-3"
         onSubmit={handleSubmit(async (data) => {
           try {
-            setSubmitting(true)
+            setSubmitting(true);
             await fetch("/api/issues/", {
               method: "POST",
               body: JSON.stringify(data),
             });
             router.push("/issues");
           } catch (error) {
-            setSubmitting(false)
+            setSubmitting(false);
             setError("An unexpected error occurred.");
           }
         })}
@@ -51,9 +51,7 @@ const NewIssuePage = () => {
         <TextField.Root>
           <TextField.Input placeholder="Title" {...register("title")} />
         </TextField.Root>
-        <ErrorMessage>
-          {errors.title?.message}
-        </ErrorMessage>
+        <ErrorMessage>{errors.title?.message}</ErrorMessage>
         <Controller
           name="description"
           control={control}
@@ -61,10 +59,10 @@ const NewIssuePage = () => {
             <SimpleMDE placeholder="Description" {...field} />
           )}
         />
-        <ErrorMessage>
-          {errors.description?.message}
-        </ErrorMessage>
-        <Button disabled={isSubmitting}>Submit New Issue{isSubmitting && <Spinner/>}</Button>
+        <ErrorMessage>{errors.description?.message}</ErrorMessage>
+        <Button disabled={isSubmitting}>
+          Submit New Issue{isSubmitting && <Spinner />}
+        </Button>
       </form>
     </div>
   );
